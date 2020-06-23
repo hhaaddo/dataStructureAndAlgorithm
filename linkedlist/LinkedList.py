@@ -1,3 +1,5 @@
+from node import Node
+
 # LinkedList 클래스
 class LinkedList:
     ## 생성자 ##
@@ -5,7 +7,7 @@ class LinkedList:
         self.nodeCount = 0
         self.head = None
         self.tail = None
-
+        
 
     ## 특정 원소 참조 ##
     def getAt(self, pos):

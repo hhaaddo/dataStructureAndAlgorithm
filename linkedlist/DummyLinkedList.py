@@ -1,3 +1,5 @@
+from node import Node
+
 # LinkedList 클래스
 class DummyLinkedList:
     ## 생성자 ##
