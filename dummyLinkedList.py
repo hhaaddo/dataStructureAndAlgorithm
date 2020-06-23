@@ -1,4 +1,4 @@
-from node import Node
+from linkedList import Node
 
 # LinkedList 클래스
 class DummyLinkedList:

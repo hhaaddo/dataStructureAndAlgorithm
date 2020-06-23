@@ -1,17 +1,25 @@
-from node import DoublyNode
+# 양방향 Node 클래스
+class Node:
+    def __init__(self, item):
+        self.date = item
+        self.prev = None
+        self.next = None
 
 # 양방향 연결 리스트 클래스
 class DoublyLinkedList:
     ## 생성자 ##
-    def __init__(self, item):
+    def __init__(self):
         self.nodeCount = 0
-        self.head = DoublyNode(None)
-        self.tail = DoublyNode(None)
+        self.head = Node(None)
+        self.tail = Node(None)
         self.head.prev = None
         self.head.next = self.tail
         self.tail.prev = self.head
         self.tail.next = None
 
+    ## 길이 얻어내기 ##
+    def getLength(self):
+        return self.nodeCount
 
     ## 리스트 순회 ##
     def traverse(self):
