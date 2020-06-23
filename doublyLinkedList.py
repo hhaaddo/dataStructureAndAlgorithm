@@ -17,6 +17,19 @@ class DoublyLinkedList:
         self.tail.prev = self.head
         self.tail.next = None
 
+    ## 출력 함수 ##
+    def __repr__(self):
+        if self.nodeCount == 0:
+            return 'LinkedList: empty'
+        s=''
+        curr = self.head
+        while curr.next.next:
+            curr = curr.next
+            s += repr(curr.data)
+            if curr.next.next is not None:
+                s += ' -> '
+            return s
+
     ## 길이 얻어내기 ##
     def getLength(self):
         return self.nodeCount
