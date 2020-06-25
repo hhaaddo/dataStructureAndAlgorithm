@@ -1,5 +1,4 @@
-from doublyLinkedList import Node
-from doublyLinkedList import DoublyLinkedList
+from doublyLinkedList import Node, DoublyLinkedList
 
 # 배열로 구현한 큐
 class ArrayQueue:
@@ -109,4 +108,43 @@ class CircularQueue:
             raise IndexError('Queue empty')
         return self.data[(self.front + 1) % self.maxCount]
 
+
+
+# 우선순위 큐
+class PriorityQueue:
+    # 양방향 연결리스트를 이용하여 빈 큐를 초기화
+    def __init__(self, x):
+        self.queue = DoublyLinkedList()
     
+    # 크기를 반환
+    def size(self):
+        return self.queue.getLength()
+
+    # 비어있는가?
+    def isEmpty(self):
+        return self.size() == 0
+        
+    # 데이터 삽입 연산
+    def enqueue(self, x):
+        newNode = Node(x)
+        
+        # 처음 시작하는 위치 head에서 시작
+        curr = self.queue.head
+        
+        # 끝까지 가지 않을 조건 && 우선순위를 비교하는 조건
+        while curr.next != self.queue.tail and x < curr.next.data :
+            curr = curr.next
+        
+        # 양방향 연결리스트를 이용해 삽입! 
+        self.queue.insertAfter(curr, newNode)
+        
+        # [주의] 양방향 연결리스트의 getAt()메서드를 이용하지 않는다.
+        # why? 
+    
+    # 데이터 삭제 연산
+    def dequeue(self):
+        return self.queue.popAt(self.queue.getLength())
+
+    # 첫번째 데이터 반환
+    def peek(self):
+        return self.queue.getAt(self.queue.getLength()).data
