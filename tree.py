@@ -1,3 +1,6 @@
+from queues import ArrayQueue
+
+
 # 이진트리의 구현 - 노드(node)
 class Node:
     # 생성자
@@ -99,3 +102,33 @@ class BinaryTree:
             return self.root.postorder()
         else:
             return []
+
+    # 넓이 우선 탐색
+    def bft(self):
+
+        # 빈 리스트 초기화
+        traversal = []
+        # 빈 큐 초기화
+        visitQueue = ArrayQueue()
+
+        # 빈 트리가 아니면 루트 노드가 있는 것 -> 큐에 루트 노드를 인큐
+        if self.root:
+            visitQueue.enqueue(self.root)
+
+        # 큐가 비어있지 않는 동안 반복
+        while not visitQueue.isEmpty():
+            # 큐에서 꺼내서 node에 저장
+            node = visitQueue.dequeue()
+            # 꺼낸 노드를 방문 리스트에 저장
+            traversal.append(node.data)
+
+            # 노드에 왼쪽 자식 노드가 존재하는경우 큐에 저장
+            if node.left:
+                visitQueue.enqueue(node.left)
+            # 노드에 오른쪽 자식 노드가 존재하는 경우 큐에 저장
+            if node.right:
+                visitQueue.enqueue(node.right)
+            
+        return traversal
+
+# 오타조심..... 테스트 케이스를 잘 설정해놓는것도 중요하다......
